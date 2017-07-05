@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include "include.h"
 
 void swap(int *array, int i, int j) 
@@ -13,8 +14,9 @@ void printarray(int arr[], int n)
 {
 	int index;
 	for(index = 0; index < n; index++) {
-		printf("%d\n", arr[index]);
+		printf("%d ", arr[index]);
 	}
+	printf("\n");
 }
 /**
  * This is the brute force technique of sorting
@@ -28,11 +30,16 @@ void bubblesort(int *arr, int n)
 	printarray(arr, n);
 	
 	for(i = 0; i < n; i++) {
-		for(j = 0; j < (n); j++) {
-			if (arr[i] < arr[j]) {
-				swap(arr, i, j);
+		bool flag = 0;
+		for(j = 0; j < (n - i - 1); j++) {
+			if (arr[j] > arr[j+1]){
+				swap(arr, j, j+1);
+				flag = 1;
 			}
+			printarray(arr, n);
 		}
+		if (!flag)
+			break;
 	}
 	printf("sorted array is:\n");
 	printarray(arr, n);
